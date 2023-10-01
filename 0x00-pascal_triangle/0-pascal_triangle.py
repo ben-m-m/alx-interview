@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""
+The function creates a Pascal's triangle of n rows and returns it as a list
+"""
 
 
 def pascal_triangle(n):
@@ -25,8 +28,9 @@ def pascal_triangle(n):
     return triangle
 
 # Test the function
+
+
 if __name__ == "__main__":
     triangle = pascal_triangle(5)
     for row in triangle:
         print(row)
-
