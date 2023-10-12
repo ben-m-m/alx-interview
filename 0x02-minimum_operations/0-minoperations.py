@@ -8,16 +8,21 @@ def minOperations(n):
     """
     minimum operations
     """
-    if n <= 1:
+    if n < 2:
         return 0
 
     count = 0
-    divisor = 2
+    opr = 2
 
     while n > 1:
-        while n % divisor == 0:
-            count += divisor
-            n = n // divisor
-        divisor += 1
+        if not n % opr:
+            n //= opr
+            count += opr
+
+        else:
+            if opr == 2:
+                opr += 1
+            else:
+                opr += 2
 
     return count
