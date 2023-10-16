@@ -1,36 +1,36 @@
 #!/usr/bin/python3
-"""
-The function creates a Pascal's triangle of n rows and returns it as a list
-"""
+"""The function creates a Pascal's triangle of n rows and returns it as a list.
+
+:param n: The input parameter for the function pascal_triangle,
+which is an integer representing the number of rows to generate
+in the Pascal's triangle
+:return: If n is less than or equal to 0, an empty list is being
+returned. Otherwise, a list containing the numbers from 1 to n is
+being returned. However, the implementation of the loop is incorrect
+as it is trying to iterate over an integer value instead of a range
+of values."""
 
 
 def pascal_triangle(n):
-    """Check for invalid input"""
+    """returns a list of lists of numbers
+    representing the pascal triangle"""
     if n <= 0:
         return []
-
-    """Initialize Pascal's triangle with the first row"""
-    triangle = [[1]]
-
-    """Generate subsequent rows"""
-    for i in range(1, n):
-        """Calculate the next row based on the previous row"""
-        prev_row = triangle[-1]
-        next_row = [1]  """The first element is always 1"""
-
-        for j in range(1, i):
-            next_element = prev_row[j - 1] + prev_row[j]
-            next_row.append(next_element)
-
-        next_row.append(1)  """The last element is always 1"""
-        triangle.append(next_row)
-
-    return triangle
-
-"""Test the function"""
-
-
-if __name__ == "__main__":
-    triangle = pascal_triangle(5)
-    for row in triangle:
-        print(row)
+    else:
+        # Create an empty list to hold each row of the triangle
+        triangle = []
+        for i in range(n):
+            # Create a new list for each row
+            row = []
+            for j in range(i+1):
+                # Calculate the value of each element in the row
+                if j == 0 or j == i:
+                    row.append(1)
+                else:
+                    """Each element is the sum of the two elements
+                    above it in the previous row"""
+                    row.append(triangle[i-1][j-1] + triangle[i-1][j])
+            # Append the row to the triangle list
+            triangle.append(row)
+        # Print the triangle
+        return triangle
