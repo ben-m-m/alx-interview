@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 def is_prime(n):
     if n <= 1:
         return False
@@ -6,11 +8,13 @@ def is_prime(n):
             return False
     return True
 
+
 def optimal_move(nums):
     for num in reversed(nums):
         if is_prime(num):
             return num
     return None
+
 
 def isWinner(x, nums):
     maria_wins = 0
@@ -43,4 +47,3 @@ def isWinner(x, nums):
         return "Ben"
     else:
         return None
-
