@@ -1,16 +1,26 @@
 #!/usr/bin/python3
-""" making change"""
+"""making change"""
 
 
 def makeChange(coins, total):
-    """ make change function"""
     if total <= 0:
         return 0
-    dp = [total + 1] * (total + 1)
-    dp[0] = 0  # Base case: no coins needed for total of 0
 
-    for c in coins:
-        for i in range(c, total + 1):
-            dp[i] = min(dp[i], dp[i - c] + 1)
+    # Sort coins in descending order
+    coins.sort(reverse=True)
 
-    return dp[total] if dp[total] != total + 1 else -1
+    # Initialize a dict to store minimum number of coins needed for each total
+    dp = {}
+
+    # Base case for 0 total
+    dp[0] = 0
+
+    for t in range(1, total + 1):
+        dp[t] = float('inf')
+        for coin in coins:
+            if coin <= t:
+                dp[t] = min(dp[t], dp[t - coin] + 1)
+            else:
+                break  # No need to check further if coins exceed currenttotal
+
+    return dp[total] if dp[total] != float('inf') else -1
